@@ -1,4 +1,4 @@
-package com.tiantue;
+package com.haiyu;
 
 import com.haiyu.manager.ManagerApplication;
 import com.haiyu.manager.dao.BaseAdminUserMapper;
