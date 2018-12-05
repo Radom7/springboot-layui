@@ -1,0 +1,28 @@
+server:
+  port: 8102
+
+
+spring:
+  application:
+      name: haiyu
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/haiyu?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      driver-class-name: com.mysql.jdbc.Driver
+#  thymeleaf:
+#      cache: false
+#      mode: HTML5
+#      encoding: UTF-8
+#      content-type: text/html
+
+mybatis:
+    mapper-locations: classpath:mapper/*.xml
+
+#设置静态资源路径，多个以逗号分隔
+spring.resources.static-locations: classpath:static/,file:static/

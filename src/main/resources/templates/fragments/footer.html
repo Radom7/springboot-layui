@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="footer">
+    <!-- 修改密码 -->
+    <div id="pwdDiv" class="layer_self_wrap" style="width:450px;display:none;">
+
+        <form id="setPwdForm" class="layui-form layui-form-pane" style="margin-top: 20px;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">新密码</label>
+                <div class="layui-input-inline">
+                    <input id="pwd" name="pwd" lay-verify="required" autocomplete="off" class="layui-input" type="password"/>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">确认新密码</label>
+                <div class="layui-input-inline">
+                    <input id="isPwd" name="isPwd" lay-verify="required" autocomplete="off" class="layui-input" type="password"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" type="reset">重置</button>
+                    <button id="pwdBtn" class="layui-btn layui-btn-primary" lay-submit="" lay-filter="setPwd">确定</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript" src="/js/updateUser.js"></script>
+</footer>
+</body>
+</html>

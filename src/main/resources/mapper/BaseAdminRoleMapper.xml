@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haiyu.manager.dao.BaseAdminRoleMapper">
+  <resultMap id="BaseResultMap" type="com.haiyu.manager.pojo.BaseAdminRole">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="role_desc" jdbcType="VARCHAR" property="roleDesc" />
+    <result column="permissions" jdbcType="VARCHAR" property="permissions" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+    <result column="role_status" jdbcType="INTEGER" property="roleStatus" />
+  </resultMap>
+
+  <sql id="baseColumn">
+    id,role_name,role_desc,permissions,create_time,update_time,role_status
+  </sql>
+
+    <update id="updateRole">
+      UPDATE base_admin_role
+      SET
+      <if test="roleName != null">role_name = #{roleName},</if>
+      <if test="roleDesc != null">role_desc = #{roleDesc},</if>
+      <if test="permissions != null">permissions = #{permissions},</if>
+      <if test="updateTime != null">update_time = #{updateTime}</if>
+      where
+      <if test="id != null">id = #{id}</if>
+    </update>
+
+  <update id="updateRoleStatus">
+    UPDATE base_admin_role
+    SET role_status = #{roleStatus}
+    where
+    <if test="id != null">id = #{id}</if>
+  </update>
+
+  <select id="getRoleList" resultMap="BaseResultMap">
+    SELECT <include refid="baseColumn" />
+    FROM base_admin_role
+    </select>
+
+  <select id="getRoles" resultMap="BaseResultMap">
+    SELECT <include refid="baseColumn" />
+    FROM base_admin_role WHERE role_status = 1
+  </select>
+</mapper>

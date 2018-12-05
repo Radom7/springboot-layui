@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haiyu.manager.dao.BaseAdminPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.haiyu.manager.pojo.BaseAdminPermission">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="descpt" jdbcType="VARCHAR" property="descpt" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+    <result column="del_flag" jdbcType="INTEGER" property="delFlag" />
+  </resultMap>
+
+  <update id="updatePermission">
+    UPDATE base_admin_permission
+    <set>
+      <if test="name != null">
+        name = #{name},
+      </if>
+      <if test="pid != null">
+        pid = #{pid},
+      </if>
+      <if test="descpt != null">
+        descpt = #{descpt},
+      </if>
+      <if test="url != null">
+        url = #{url},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime}
+      </if>
+    </set>
+    WHERE id = #{id}
+  </update>
+
+  <select id="getPermissionList" resultType="com.haiyu.manager.dto.PermissionDTO">
+      SELECT id,name,pid,
+      (SELECT name FROM base_admin_permission WHERE id = p.pid) as pname,
+      descpt,url,create_time AS createTime, update_time AS updateTime,del_flag AS delFlag
+      FROM base_admin_permission as p ORDER BY pid
+    </select>
+
+  <select id="parentPermissionList" resultType="com.haiyu.manager.dto.PermissionDTO">
+    SELECT id,name
+      FROM base_admin_permission WHERE pid = 0
+  </select>
+
+    <select id="getPermissionListByPId" resultType="com.haiyu.manager.dto.PermissionDTO">
+      SELECT id,name,pid,url FROM base_admin_permission  WHERE pid = #{pid}
+    </select>
+
+</mapper>
