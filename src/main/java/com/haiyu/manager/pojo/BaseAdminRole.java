@@ -176,4 +176,13 @@ public class BaseAdminRole {
     public void setRoleStatus(Integer roleStatus) {
         this.roleStatus = roleStatus;
     }
+
+	@Override
+	public String toString() {
+		return "BaseAdminRole [id=" + id + ", roleName=" + roleName + ", roleDesc=" + roleDesc + ", permissions="
+				+ permissions + ", createTime=" + createTime + ", updateTime=" + updateTime + ", roleStatus="
+				+ roleStatus + "]";
+	}
+    
+    
 }

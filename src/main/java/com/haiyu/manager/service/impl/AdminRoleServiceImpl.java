@@ -47,6 +47,8 @@ public class AdminRoleServiceImpl implements AdminRoleService {
 
         List<AdminRoleDTO> roleList = new ArrayList <>();
         for(BaseAdminRole r:roles){
+        	
+        	logger.info(r.toString());
             AdminRoleDTO roleDTO =  new AdminRoleDTO();
 
             String permissions = r.getPermissions();
@@ -58,8 +60,10 @@ public class AdminRoleServiceImpl implements AdminRoleService {
                 List<String> p = new ArrayList <>();
                 for(String id: ids){
                     BaseAdminPermission baseAdminPermission = this.baseAdminPermission.selectByPrimaryKey(id);
-                    String name = baseAdminPermission.getName();
-                    p.add(name);
+                    if(baseAdminPermission != null){
+	                    String name = baseAdminPermission.getName();
+	                    p.add(name);
+                    }
                 }
                 roleDTO.setPermissions(p.toString());
             }

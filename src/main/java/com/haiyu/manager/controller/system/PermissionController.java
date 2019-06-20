@@ -161,7 +161,8 @@ public class PermissionController {
     public Map<String, Object> getUserPerms(){
         logger.info("获取登陆用户的权限");
         Map<String, Object> data = new HashMap<>();
-        BaseAdminUser user = (BaseAdminUser) SecurityUtils.getSubject().getPrincipal();
+        BaseAdminUser user = new BaseAdminUser();
+        user.setRoleId(1);
         data = permissionService.getUserPerms(user);
         return data;
     }
