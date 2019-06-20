@@ -1,6 +1,6 @@
 package com.haiyu.manager.dto;
 
-;import lombok.Data;
+import lombok.Data;
 
 /**
  * @Title: AdminUserDTO
