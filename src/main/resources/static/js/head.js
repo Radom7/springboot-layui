@@ -1,6 +1,6 @@
 /**
  * 菜单
- * */
+ * *//*
 //获取路径uri
 var pathUri=window.location.href;
 $(function(){
@@ -75,4 +75,4 @@ function updateUsePwd(){
         area: ['450px'],
         content:$('#pwdDiv')
     });
-}
+}*/

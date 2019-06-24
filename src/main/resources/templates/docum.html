@@ -40,22 +40,19 @@
 					<div class="layui-inline">
 						<label class="layui-form-label">订单编号</label>
 						<div class="layui-input-inline">
-							<input type="text" name="applyNo" lay-verify="required|number"
-								autocomplete="off" class="layui-input">
+							<input type="text" name="applyNo"  autocomplete="off" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-inline">
 						<label class="layui-form-label">客户姓名</label>
 						<div class="layui-input-inline">
-							<input type="text" name="userName"  autocomplete="off"
-								class="layui-input">
+							<input type="text" name="userName"  autocomplete="off" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-inline">
 						<label class="layui-form-label">证件号码</label>
 						<div class="layui-input-inline">
-							<input type="text" name="idCardNum" autocomplete="off"
-								class="layui-input">
+							<input type="text" name="idCardNum" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-inline">
@@ -72,20 +69,16 @@
 			  <tbody>
 			    <tr>
 			      <td class="test1" style="padding: 0px 10px;">客户姓名：</td>
-			      <td></td>
+			      <td id="brief_userName"></td>
 			    </tr>
 			    <tr>
 			      <td class="test1" style="padding: 0px 10px;">出生日期：</td>
-			      <td></td>
+			      <td id="brief_borDate"></td>
 			    </tr>
 			    <tr>
 			      <td class="test1" style="padding: 0px 10px;">性别：</td>
-			      <td></td>
+			      <td id="brief_sec"></td>
 			    </tr>
-			    <!-- <tr>
-			      <td class="test1" style="padding: 0px 10px;">当事人姓名或名称：</td>
-			      <td></td>
-			    </tr> -->
 			  </tbody>
 			</table>
 		</div>
@@ -185,15 +178,40 @@
 				var form = layui.form, layer = layui.layer;
 				//监听提交
 				form.on('submit(demo1)', function(data) {
-					layer.alert(JSON.stringify(data.field), {
-						title : '最终的提交信息'
-					})
-					return false;
+					var paramArr = [];
+					paramArr[0]=data.field.applyNo|'ZZS0420190425011';
+					paramArr[1]=data.field.userName|'刘金荣';
+					paramArr[2]=data.field.idCardNum|'410104196205305524';
+					console.log(paramArr.join(","));
+					
+					$.ajax({
+			              url:"http://10.96.2.139:5000/test",
+			              type:'post',
+			              data:paramArr.join(","),
+			              beforeSend:function () {
+			                  this.layerIndex = layer.load(0, { shade: [0.5, '#393D49'] });
+			              },
+			              success:function(data){
+
+			            	  if(data){
+			            		  
+			            	  }else{
+			            		  layer.alert("查询数据为空");
+			            	  }
+			              },
+			              complete: function () {
+			                  layer.close(this.layerIndex);
+			              },
+			          });
+
+			   	 	return false;
+			   	 	
 				});
 		});
 		
 		 $(function () {
-            var users = [{ ID: 'think8848', Name: 'Joseph Chan', Ctrl: {x:"x"} }, { ID: 'aCloud', Name: 'Mary Cheung', Ctrl: {x:'<input type="text" value="Demo" />'}}];
+            // var users = [{ ID: '', Name: 'Joseph Chan', Ctrl: {x:"x"} }, { ID: 'aCloud', Name: 'Mary Cheung', Ctrl: {x:'<input type="text" value="Demo" />'}}];
+            var users = [{ Ctrl: {x:""}}];
             $('#coredata').tmpl(users).appendTo('.layui-container');
         });
 	</script>

@@ -124,8 +124,13 @@ public class keyController {
 	 */
 	@RequestMapping("/list")
 	@ResponseBody
-	public List<BaseUser> list(HttpServletRequest request) {
+	public Map<String, Object> list(HttpServletRequest request) {
+		Map<String, Object> ret = new HashMap<>();
 		BaseUser baseUser = new BaseUser();
-		return baseUserService.getBaseUsers(baseUser);
+		List<BaseUser> userList = baseUserService.getBaseUsers(baseUser);
+		ret.put("code", 200);
+		ret.put("list", userList);
+		ret.put("totals", userList.size());
+		return ret;
 	}
 }
