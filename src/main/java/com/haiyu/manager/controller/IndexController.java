@@ -19,24 +19,24 @@ public class IndexController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping("login")
-    public String tologin(){
-        logger.info("定向登陆页");
-        return "login";
-    }
-
     @RequestMapping("home")
     public String home(){
         logger.info("定向主页");
         return "home";
     }
-
-    @RequestMapping("logout")
-    public String logout(){
-        logger.info("退出系统");
-        Subject subject = SecurityUtils.getSubject();
-        subject.logout(); // shiro底层删除session的会话信息
-        return "redirect:login";
+    
+    @RequestMapping("docum")
+    public String docum(){
+        return "docum";
     }
 
+    @RequestMapping("register")
+    public String register(){
+        return "register";
+    }
+    
+    @RequestMapping("activation")
+    public String activation(){
+        return "activation";
+    }
 }
