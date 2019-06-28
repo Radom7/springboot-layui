@@ -25,6 +25,11 @@
           height:0;
       }
   }
+ .font-highlight{
+     color: red;
+    font-size: 24px;
+    font-weight: 1000;
+   }
 </style>
 <body>
 <blockquote class="layui-elem-quote layui-text">
@@ -64,112 +69,113 @@
 		<fieldset class="layui-elem-field layui-field-title"
 			style="margin-top: 20px;">
 		</fieldset>
-		<div class="layui-row">
-			<table lay-filter="parse-table-demo" class="layui-col-md-offset1">
+		<div class="layui-row" id="infodataContainer">
+		</div>
+		<div class="layui-row" id="descdataContainer">
+		</div>
+	</div>
+	<script id="infodata" type="text/x-jquery-tmpl"> 
+		<table lay-filter="parse-table-demo" class="layui-col-md-offset1">
 			  <tbody>
 			    <tr>
 			      <td class="test1" style="padding: 0px 10px;">客户姓名：</td>
-			      <td id="brief_userName"></td>
+			      <td id="brief_userName">${name}</td>
 			    </tr>
 			    <tr>
 			      <td class="test1" style="padding: 0px 10px;">出生日期：</td>
-			      <td id="brief_borDate"></td>
+			      <td id="brief_borDate">${bDate}</td>
 			    </tr>
 			    <tr>
 			      <td class="test1" style="padding: 0px 10px;">性别：</td>
-			      <td id="brief_sec"></td>
+			      <td id="brief_sec">${gender}</td>
 			    </tr>
 			  </tbody>
-			</table>
-		</div>
-		
-	</div>
+		</table>
+	</script>
 	<script id="coredata" type="text/x-jquery-tmpl"> 
-	  	<fieldset class="layui-elem-field layui-field-title"
+		<fieldset class="layui-elem-field layui-field-title"
 			style="margin-top: 20px;">
 		</fieldset>
-		<div class="layui-row">
 			<table lay-filter="parse-table-demo" class="layui-col-md-offset1" style="margin-left: 40px;">
 			  <tbody>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">标题：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">标题：</td>
+			      <td>${title}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">结案时间：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">结案时间：</td>
+			      <td>${finishDate}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">当事人姓名或名称：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">当事人姓名或名称：</td>
+			      <td>${nameJug}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">证件名称：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">证件名称：</td>
+			      <td>${idNo}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">案号：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">案号：</td>
+			      <td>${caseNo}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">诉讼地位：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">诉讼地位：</td>
+			      <td>${roleType}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">审理机关：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">审理机关：</td>
+			      <td>${judgeOrg}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">文书类型：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">文书类型：</td>
+			      <td>${docType}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">涉案事由：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">涉案事由：</td>
+			      <td>${caseReason}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">涉案金额：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">涉案金额：</td>
+			      <td>${money}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">审理结果：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">审理结果：</td>
+			      <td>${judgeResult}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">审理程序：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">审理程序：</td>
+			      <td>${program}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">审理人员：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">审理人员：</td>
+			      <td>${judgeman}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">异议备注：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">异议备注：</td>
+			      <td>${notes}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">完整内容查看地址：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">完整内容查看地址：</td>
+			      <td>${docContentUri}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">原告当事人：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">原告当事人：</td>
+			      <td>${plantiff}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">被告当事人：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">被告当事人：</td>
+			      <td>${defendant}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">其他当事人：</td>
-			      <td></td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">其他当事人：</td>
+			      <td>${otherRole}</td>
 			    </tr>
 			    <tr>
-			      <td class="test1" style="padding: 0px 10px;">案件内容：</td>
-			      <td>{{html Ctrl.x}}</td>
+			      <td class="test1" style="padding: 0px 10px; min-width: 126px;">案件内容：</td>
+			      <td>{{html docContent}}</td>
 			    </tr>
 			  </tbody>
 			</table>
-		</div>
 	</script>
 	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 	<script>
@@ -179,22 +185,48 @@
 				//监听提交
 				form.on('submit(demo1)', function(data) {
 					var paramArr = [];
-					paramArr[0]=data.field.applyNo|'ZZS0420190425011';
-					paramArr[1]=data.field.userName|'刘金荣';
-					paramArr[2]=data.field.idCardNum|'410104196205305524';
+					paramArr[0]=data.field.applyNo;
+					paramArr[1]=data.field.userName;
+					paramArr[2]=data.field.idCardNum;/*  */
 					console.log(paramArr.join(","));
-					
 					$.ajax({
-			              url:"http://10.96.2.139:5000/test",
+			              url:"getData",
 			              type:'post',
-			              data:paramArr.join(","),
+			              data:{"input_data":paramArr.join(",")},
 			              beforeSend:function () {
 			                  this.layerIndex = layer.load(0, { shade: [0.5, '#393D49'] });
 			              },
 			              success:function(data){
-
+			            	  console.log(data);
+			            	  if(data.code != "200"){
+			            		  layer.alert(data.message);
+			            		  layer.close(this.layerIndex);
+			            	  }
 			            	  if(data){
+			            		  var data = $.parseJSON( data.obj );
+			            		  var infodatas = [];
+			            		  infodatas[0]=data.userInfo;
+			            		  $('#infodataContainer').empty();
+			            		  $('#infodata').tmpl(infodatas).appendTo('#infodataContainer');
 			            		  
+			            		  var userDescs = data.userDesc;
+			            		  for(doc in userDescs){
+			            			  if(userDescs[doc].docContent){
+			            				  userDescs[doc].docContent = userDescs[doc].docContent.replace(infodatas[0].name,"<span class=\"font-highlight\">"+infodatas[0].name+"</span>");
+			            				  userDescs[doc].docContent = userDescs[doc].docContent.replace(infodatas[0].bDate,"<span class=\"font-highlight\">"+infodatas[0].bDate+"</span>");
+			            				  userDescs[doc].docContent = userDescs[doc].docContent.replace(infodatas[0].gender,"<span class=\"font-highlight\">"+infodatas[0].gender+"</span>");
+			            			  }
+			            		  }
+			            		  
+			            		  $('#descdataContainer').empty();
+			            		  $('#coredata').tmpl(userDescs).appendTo('#descdataContainer');
+			            		  
+			            		  /*  */
+			            		  /*  var infodatas = [{ name: "124"},{ name: "124123"}];
+			                      $('#infodata').tmpl(infodatas).appendTo('#infodataContainer');
+			                      
+			                      var users = [{ title: "123"}];
+			                      $('#coredata').tmpl(users).appendTo('#descdataContainer'); */
 			            	  }else{
 			            		  layer.alert("查询数据为空");
 			            	  }
@@ -211,8 +243,13 @@
 		
 		 $(function () {
             // var users = [{ ID: '', Name: 'Joseph Chan', Ctrl: {x:"x"} }, { ID: 'aCloud', Name: 'Mary Cheung', Ctrl: {x:'<input type="text" value="Demo" />'}}];
-            var users = [{ Ctrl: {x:""}}];
-            $('#coredata').tmpl(users).appendTo('.layui-container');
+           
+             var infodatas = [{ name: ""}];
+            $('#infodata').tmpl(infodatas).appendTo('#infodataContainer');
+            
+            var users = [{ docContent: "<span style=\"color: red;\"> </span>"}];
+            $('#coredata').tmpl(users).appendTo('#descdataContainer');
+           
         });
 	</script>
 

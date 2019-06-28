@@ -111,6 +111,18 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>3.2.8.RELEASE</version>
 	  	</dependency>
+	  	
+	  	<dependency>
+		 	 <groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			 <version>4.4.1</version>
+	  	</dependency>
+	  	
+	  	<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.56</version>
+		</dependency>
     </dependencies>
 
 	<build>
