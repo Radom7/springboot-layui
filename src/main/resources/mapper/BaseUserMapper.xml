@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haiyu.manager.dao.BaseUserMapper">
+  <resultMap id="BaseResultMap" type="com.haiyu.manager.dto.BaseUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone"  property="phone" />
+    <result column="salt"  property="salt" />
+    <result column="register_code"  property="registerCode" />
+    <result column="machine_code"  property="machineCode" />
+    <result column="auth_code"  property="authCode" />
+    <result column="register_date"  property="registerDate" jdbcType="TIMESTAMP" />
+    <result column="activate_flag"  property="activateFlag" />
+    <result column="activate_date"  property="activateDate" jdbcType="TIMESTAMP"  />
+    <result column="yun_success"  property="yunSuccess"  jdbcType="INTEGER" />
+    <result column="yun_fail"  property="yunFail"  jdbcType="INTEGER"  />
+    <result column="yun_success_date"  property="yunSuccessDate" jdbcType="TIMESTAMP" />
+    <result column="yun_fail_date"  property="yunFailDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="baseColumn">
+    id,phone,salt,register_code,machine_code,auth_code,register_date,activate_flag,activate_date,yun_success,yun_fail,yun_success_date,yun_fail_date
+  </sql>
+
+  <select id="getBaseUsers" resultMap="BaseResultMap">
+   	SELECT <include refid="baseColumn" /> FROM base_user
+    <trim prefix="where" prefixOverrides="and">
+		<if test="phone != null and phone != '' ">
+			and phone LIKE CONCAT('%',#{phone},'%')
+		</if>
+		<if test="registerCode != null and registerCode != '' ">
+			and register_code = #{registerCode}
+		</if>
+		<if test="authCode != null and authCode != '' ">
+			and auth_code = #{authCode}
+		</if>
+		<if test="yunSuccess != null and yunSuccess != '' ">
+			and yun_success = #{yunSuccess}
+		</if>
+		<if test="yunFail != null and yunFail != '' ">
+			and yun_fail = #{yunFail}
+		</if>
+		<if test="machineCode != null and machineCode != '' ">
+			and machine_code = #{machineCode}
+		</if>
+	</trim>
+  </select>
+  
+  <update id="updateBaseUser">
+      UPDATE base_user
+      
+       <trim prefix="set" suffix="where" suffixOverrides=",">
+      <if test="phone != null">phone = #{phone},</if>
+      <if test="salt != null">salt = #{salt},</if>
+      <if test="registerCode != null">register_code = #{registerCode},</if>
+      <if test="machineCode != null">machine_code = #{machineCode},</if>
+      <if test="authCode != null">auth_code = #{authCode},</if>
+      <if test="registerDate != null">register_date = #{registerDate},</if>
+      <if test="activateFlag != null">activate_flag = #{activateFlag},</if>
+      <if test="activateDate != null">activate_date = #{activateDate},</if>
+      <if test="yunSuccess != null">yun_success = #{yunSuccess},</if>
+      <if test="yunFail != null">yun_fail = #{yunFail},</if>
+      <if test="yunSuccessDate != null">yun_success_date = #{yunSuccessDate},</if>
+      <if test="yunFailDate != null">yun_fail_date = #{yunFailDate}</if>
+      </trim>
+      <if test="id != null">id = #{id}</if>
+  </update>
+
+  <insert id="addBaseUser" parameterType="com.haiyu.manager.dto.BaseUser">
+  	INSERT INTO `base_user` (`id`, `phone`, `salt`, `register_code`, `machine_code`, `auth_code`, `register_date`, `activate_flag`, `activate_date`, `yun_success`, `yun_fail`, `yun_success_date`, `yun_fail_date`) VALUES 
+  	(#{id}, #{phone}, #{salt}, #{registerCode}, #{machineCode}, #{authCode}, #{registerDate}, #{activateFlag}, #{activateDate}, #{yunSuccess}, #{yunFail}, #{yunSuccessDate}, #{yunFailDate});
+  </insert>
+  
+</mapper>

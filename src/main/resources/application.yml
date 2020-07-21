@@ -1,15 +1,15 @@
 server:
-  port: 8102
+  port: 9102
 
 
 spring:
   application:
-      name: haiyu
+      name: yunsen
   datasource:
     druid:
-      url: jdbc:mysql://localhost:3306/haiyu?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
-      username: root
-      password: root
+      url: jdbc:mysql://10.11.0.156:3306/test?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+      username: bpms
+      password: bpms@123
       initial-size: 1
       min-idle: 1
       max-active: 20

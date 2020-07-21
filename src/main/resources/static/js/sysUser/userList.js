@@ -10,7 +10,7 @@ $(function() {
 
         tableIns=table.render({
             elem: '#uesrList',
-            url:'/user/getUserList',
+            url:'/key/list',
             method: 'post', //默认：get请求
             cellMinWidth: 80,
             page: true,
@@ -26,12 +26,36 @@ $(function() {
             },
             cols: [[
                 {type:'numbers'}
-                ,{field:'sysUserName', title:'用户名',align:'center'}
-                ,{field:'roleName', title:'角色类型',align:'center'}
-                ,{field:'userPhone', title:'手机号',align:'center'}
-                ,{field:'regTime', title: '注册时间',align:'center'}
-                ,{field:'userStatus', title: '是否有效',align:'center'}
-                ,{title:'操作',align:'center', toolbar:'#optBar'}
+                ,{field:'phone', title:'手机号',align:'center'}
+                ,{field:'registerCode', title:'注册码',align:'center'}
+                ,{field:'machineCode', title:'机器码',align:'center'}
+                ,{field:'authCode', title: '云校验编码',align:'center'}
+                ,{field:'registerDate', title: '注册时间',align:'center',templet: function (d) {
+                	if(!d.registerDate){
+                		return "-";
+                	}
+                	return Format(d.registerDate,"yyyy-MM-dd hh:mm:ss");
+                	}}
+                ,{field:'activateDate', title: '激活时间',align:'center',templet: function (d) {
+                	if(!d.activateDate){
+                		return "-";
+                	}
+                	return Format(d.activateDate,"yyyy-MM-dd hh:mm:ss");
+            	}}
+                ,{field:'yunSuccess', title: '云检测成功次数',align:'center'}
+                ,{field:'yunSuccessDate', title: '云检测成功时间',align:'center',templet: function (d) {
+                	if(!d.yunSuccessDate){
+                		return "-";
+                	}
+                	return Format(d.yunSuccessDate,"yyyy-MM-dd hh:mm:ss");
+            	}}
+                ,{field:'yunFail', title: '云检测失败次数',align:'center'}
+                ,{field:'yunFailDate', title: '云检测失败时间',align:'center',templet: function (d) {
+                	if(!d.yunFailDate){
+                		return "-";
+                	}
+                	return Format(d.yunFailDate,"yyyy-MM-dd hh:mm:ss");
+            	}}
             ]],
             done: function(res, curr, count){
                 //如果是异步请求数据方式，res即为你接口返回的信息。
@@ -95,6 +119,33 @@ $(function() {
         });
     });
 });
+
+function Format(datetime,fmt) {
+	  console.log(parseInt(datetime));
+	  if (parseInt(datetime)==datetime) {
+	    if (datetime.length==10) {
+	      datetime=parseInt(datetime)*1000;
+	    } else if(datetime.length==13) {
+	      datetime=parseInt(datetime);
+	    }
+	  }
+	  datetime=new Date(datetime);
+	  var o = {
+	  "M+" : datetime.getMonth()+1,                 //月份   
+	  "d+" : datetime.getDate(),                    //日   
+	  "h+" : datetime.getHours(),                   //小时   
+	  "m+" : datetime.getMinutes(),                 //分   
+	  "s+" : datetime.getSeconds(),                 //秒   
+	  "q+" : Math.floor((datetime.getMonth()+3)/3), //季度   
+	  "S"  : datetime.getMilliseconds()             //毫秒   
+	  };   
+	  if(/(y+)/.test(fmt))   
+	  fmt=fmt.replace(RegExp.$1, (datetime.getFullYear()+"").substr(4 - RegExp.$1.length));   
+	  for(var k in o)   
+	  if(new RegExp("("+ k +")").test(fmt))   
+	  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+	  return fmt;
+	}
 
 //提交表单
 function formSubmit(obj){
